@@ -1,0 +1,8 @@
+terraform/env/staging/.terraform
+terraform/env/staging/.terraform.lock.hcl
+terraform/env/staging/tfplan
+terraform/remote-state/.terraform
+terraform/remote-state/.terraform.lock.hcl
+terraform/remote-state/terraform.tfstate
+terraform/remote-state/terraform.tfstate.backup
+terraform/remote-state/tfplan

@@ -1,0 +1,98 @@
+apiVersion: v1alpha1
+sts-region: us-east-1
+discovery:
+  jobs:
+  - type: ecs-containerinsights
+    regions:
+      - us-east-1
+    metrics:
+      - name: cpu_usage_idle
+        statistics:
+          - Average
+        period: 300
+        length: 300
+        nilToZero: true
+      - name: CpuUtilized
+        statistics:
+          - Average
+        period: 300
+        length: 300
+        nilToZero: true
+      - name: MemoryUtilized
+        statistics:
+          - Average
+        period: 300
+        length: 300
+        nilToZero: true
+      - name: NetworkRxBytes
+        statistics:
+          - Average
+        period: 300
+        length: 300
+        nilToZero: true
+  - type: alb
+    regions:
+      - us-east-1
+    searchTags:
+      - key: Name
+        value: nd-alb
+      - key: Env
+        value: test
+    metrics:
+      - name: RequestCountPerTarget
+        statistics: [Maximum,Minimum,Average]
+        period: 60
+        length: 600
+        nilToZero: true
+      - name: HTTPCode_Target_4XX_Count
+        statistics: [Maximum,Minimum,Average]
+        period: 60
+        length: 600
+        nilToZero: true
+      - name: HTTPCode_Target_5XX_Count
+        statistics: [Maximum,Minimum,Average]
+        period: 60
+        length: 600
+        nilToZero: true
+      - name: HealthyHostCount
+        statistics: [Maximum,Minimum,Average]
+        period: 60
+        length: 600
+        nilToZero: true
+      - name: UnHealthyHostCount
+        statistics: [Maximum,Minimum,Average]
+        period: 60
+        length: 600
+        nilToZero: true
+      - name: TargetResponseTime
+        statistics: [Maximum,Minimum,Average]
+        period: 60
+        length: 600
+        nilToZero: true
+  - type: rds
+    regions:
+      - us-east-1
+    searchTags:
+      - key: Env
+        value: Dev
+    metrics:
+      - name: CPUUtilization
+        statistics: [Maximum,Minimum,Average]
+        period: 60
+        length: 600
+        nilToZero: true
+      - name: DatabaseConnections
+        statistics: [Maximum,Minimum,Average]
+        period: 60
+        length: 600
+        nilToZero: true
+      - name: FreeableMemory
+        statistics: [Maximum,Minimum,Average]
+        period: 60
+        length: 600
+        nilToZero: true
+      - name: FreeStorageSpace
+        statistics: [Maximum,Minimum,Average]
+        period: 60
+        length: 600
+        nilToZero: true

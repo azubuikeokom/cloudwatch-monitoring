@@ -1,0 +1,29 @@
+[
+        {
+            "name": "yace",
+            "image": "072056452537.dkr.ecr.us-east-1.amazonaws.com/yace:v1.0.0",
+            "portMappings": [
+                {
+                    "name": "yace-5000-tcp",
+                    "containerPort": 5000,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-create-group": "true",
+                    "awslogs-group": "/ecs/yace-exporter",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            }
+        }
+    ]
+     
