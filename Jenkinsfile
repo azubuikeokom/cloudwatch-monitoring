@@ -27,8 +27,9 @@ pipeline{
             steps{
                  withAWS(credentials:'aws-credentials',region:'us-east-1') {
                     sh "cd terraform/env/staging"
+                    sh "ls -al"
                     sh "terraform init"
-                    sh "terraform apply -out tfplan"
+                    sh "terraform plan -out tfplan"
             }                                     
             }
         }
