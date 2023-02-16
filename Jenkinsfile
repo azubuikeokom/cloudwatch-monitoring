@@ -15,10 +15,10 @@ pipeline{
         stage("Build custom Docker IMAGE"){
             steps{
                 withAWS(credentials:'aws-credentials',region:'us-east-1') {
-                    echo '${env.BUILD_ID}'
+                    echo "${env.BUILD_ID}"
                     sh 'aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin "${AWS_ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com" '
                     sh 'docker build -t "${AWS_ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com/${IMAGE}:${env.BUILD_ID}" .'
-                    sh 'docker push "${AWS_ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com/${IMAGE}:${env.BUILD_ID}"  '
+                    sh 'docker push "${AWS_ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com/${IMAGE}:${env.BUILD_ID}"'
             }
             }
         }
