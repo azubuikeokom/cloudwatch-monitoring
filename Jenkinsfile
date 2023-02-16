@@ -23,7 +23,7 @@ pipeline{
         }
         stage("Push imgae to AWS ECR"){
             steps{
-                echo Hello pushing!
+                echo Hello pushing!d
             }
         }
         stage("Deploy ECS infrastructure"){
