@@ -1,7 +1,7 @@
 pipeline{
      agent any
      parameters{
-        choice(name:"ENVIRONMENTS",choices:["staging","prod"],description:"Engineers inputs the environment to deploy into")
+        choice(name:"ENVIRONMENTS",choices:["staging","prod"],description:"Engineers inputs the environment to deploy into",required:true)
      }
      environment{
         REGION = "us-east-1"
