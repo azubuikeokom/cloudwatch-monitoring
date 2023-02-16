@@ -59,5 +59,5 @@ You can take the obtion of baking up the config.yml file together with a
     docker push  account_id.dkr.ecr.us-east-1.amazonaws.com/yace:v1.0.0 
 
 ## Create YACE-cluster
+ECS cluster, service and task definition were all done using terraform
 
-##  create the cluster on ECS

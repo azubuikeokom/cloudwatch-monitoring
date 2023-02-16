@@ -6,3 +6,8 @@ terraform/remote-state/.terraform.lock.hcl
 terraform/remote-state/terraform.tfstate
 terraform/remote-state/terraform.tfstate.backup
 terraform/remote-state/tfplan
+terraform/remote-state-prod/.terraform
+terraform/remote-state-prod/.terraform.lock.hcl
+terraform/remote-state-prod/terraform.tfstate
+terraform/remote-state-prod/terraform.tfstate.backup
+terraform/remote-state-prod/tfplan

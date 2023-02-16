@@ -1,7 +1,9 @@
 pipeline{
      agent any
+     parameters{
+        choice(name:"ENVIRONMENTS",choices:["staging","prod"],description:"Engineers inputs the environment to deploy into")
+     }
      environment{
-        TERRAFORM_VERSION="1.3.9"
         REGION = "us-east-1"
         AWS_ACCOUNT = "072056452537"
         REPO_URL="${AWS_ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com"
@@ -26,7 +28,7 @@ pipeline{
         stage("Initializa Terraform and Plan ECS FARGATE Deployment"){
             steps{
                  withAWS(credentials:'aws-credentials',region:'us-east-1') {
-                    dir("terraform/env/staging"){
+                    dir("terraform/env/${params.ENVIRONMENTS}"){
                         sh "terraform init"
                         sh "terraform plan -out tfplan"
                     }
@@ -36,8 +38,8 @@ pipeline{
         stage("Deploy ECS infrastructure"){
             steps{
                 withAWS(credentials:'aws-credentials',region:'us-east-1') {
-                    dir("terraform/env/staging"){
-                        sh "terraform apply --auto-approve"
+                    dir("terraform/env/${params.ENVIRONMENTS}"){
+                        sh "terraform apply tfplan"
                     }
             }     
             }

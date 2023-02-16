@@ -1,11 +1,11 @@
 resource "aws_ecs_service" "yace-service" {
-  name            = "${var.name}-service"
+  name            = "${var.name}-service-${var.environment}"
   cluster         = aws_ecs_cluster.main.id
   task_definition = aws_ecs_task_definition.task.arn
   desired_count   = var.service-count
   launch_type     = var.launch-type
   scheduling_strategy = var.scheduling_strategy
-
+  
 
     network_configuration {
     security_groups  = [aws_security_group.ecs-tasks-sg.id]

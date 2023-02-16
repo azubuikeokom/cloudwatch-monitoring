@@ -1,5 +1,5 @@
 resource "aws_ecs_task_definition" "task" {
-  family                = "${var.name}"
+  family                = "${var.name}-task-${var.environment}"
   execution_role_arn    = aws_iam_role.yace-task-role.arn
   task_role_arn         = aws_iam_role.yace-task-role.arn
   requires_compatibilities = ["FARGATE"]
