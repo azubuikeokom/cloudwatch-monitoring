@@ -23,7 +23,7 @@ pipeline{
             }
             }
         }
-        stage("Deploy ECS FARGATE infrastructure"){
+        stage("Initializa Terraform and Plan ECS FARGATE Deployment"){
             steps{
                  withAWS(credentials:'aws-credentials',region:'us-east-1') {
                     dir("terraform/env/staging"){
@@ -35,8 +35,11 @@ pipeline{
         }
         stage("Deploy ECS infrastructure"){
             steps{
-                echo 'Deploy'
-                echo "${env.JENKINS_BASE_URL}"
+                withAWS(credentials:'aws-credentials',region:'us-east-1') {
+                    dir("terraform/env/staging"){
+                        sh "terraform apply --auto-approve"
+                    }
+            }     
             }
         }
      }
