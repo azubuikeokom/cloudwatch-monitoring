@@ -1,6 +1,6 @@
 pipeline{
      agent any
-     environemt{
+     environment{
         REGION = "us-east-1"
         AWS_ACCOUNT = "072056452537"
         REPO_URL="${AWS_ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com"
