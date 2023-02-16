@@ -26,8 +26,9 @@ pipeline{
         stage("Deploy ECS FARGATE infrastructure"){
             steps{
                  withAWS(credentials:'aws-credentials',region:'us-east-1') {
-                  sh "terraform init"
-                  sh "terraform apply -out tfplan"
+                    sh "cd terraform/env/staging"
+                    sh "terraform init"
+                    sh "terraform apply -out tfplan"
             }                                     
             }
         }
