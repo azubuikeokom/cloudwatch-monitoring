@@ -42,7 +42,7 @@ pipeline{
             steps{
                 withAWS(credentials:'aws-credentials',region:'us-east-1') {
                     dir("terraform/env/${params.ENVIRONMENTS}"){
-                        sh "terraform apply tfplan"
+                        sh "terraform apply tfplan "
                     }
             }     
             }
