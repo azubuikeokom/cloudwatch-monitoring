@@ -1,7 +1,7 @@
 pipeline{
      agent any
      parameters{
-        choice(name:"ENVIRONMENTS",choices:["staging","prod"],description:"Engineers inputs the environment to deploy into",required:true)
+        choice(name:"ENVIRONMENTS",choices:["staging","prod"],description:"Engineers inputs the environment to deploy into")
      }
      environment{
         REGION = "us-east-1"
@@ -26,6 +26,9 @@ pipeline{
             }
         }
         stage("Initializa Terraform and Plan ECS FARGATE Deployment"){
+            when{
+                expression{params.ENVIRONMENTS}
+            }
             steps{
                  withAWS(credentials:'aws-credentials',region:'us-east-1') {
                     dir("terraform/env/${params.ENVIRONMENTS}"){
