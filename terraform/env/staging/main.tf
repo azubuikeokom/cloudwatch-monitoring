@@ -1,9 +1,9 @@
 locals {
   environment = "staging"
 }
-module "ecs-ec2" {
+module "ecs-fargate" {
 
-  source              = "../../modules/ecs-ec2"
+  source              = "../../modules/ecs-fargate"
   name                = "yace"
   network-mode        = "awsvpc"
   service-count       = 1
