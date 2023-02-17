@@ -1,8 +1,5 @@
 pipeline{
      agent any
-     parameters{
-        choice(name:"ENVIRONMENTS",choices:["staging","prod"],description:"Engineers inputs the environment to deploy into")
-     }
      environment{
         REGION = "us-east-1"
         AWS_ACCOUNT = "072056452537"
@@ -27,8 +24,12 @@ pipeline{
             }
         }
         stage("Initializa Terraform and Plan ECS FARGATE Deployment"){
-            when{
-                expression{params.ENVIRONMENTS}
+            input{
+                message "Choose Deployment Environment"
+                ok "OK"
+                parameters{
+                   choice(name:"ENVIRONMENTS",choices:["staging","prod"],description:"Engineers inputs the environment to deploy into")
+                }
             }
             steps{
                  withAWS(credentials:'aws-credentials',region:'us-east-1') {
