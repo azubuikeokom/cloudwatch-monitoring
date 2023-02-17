@@ -19,7 +19,7 @@ pipeline{
             steps{
                 withAWS(credentials:'aws-credentials',region:'us-east-1') {
                     echo "${env.BUILD_ID}"
-                    shh "docker image prune --all -f"
+                    sh "docker image prune --all -f"
                     sh 'aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin "${AWS_ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com" '
                     sh "docker build -t ${AWS_ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com/${IMAGE}:v${env.BUILD_ID} ."
                     sh "docker push ${AWS_ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com/${IMAGE}:v${env.BUILD_ID}"
